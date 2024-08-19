@@ -1,0 +1,35 @@
+{
+  "name": "fetch-static",
+  "version": "1.0.1",
+  "description": "A utility to fetch data at build-time and cache it for use in production.",
+  "main": "dist/fetchStatic.js",
+  "types": "dist/fetchStatic.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thebadking/fetch-static"
+  },
+  "keywords": [
+    "fetch",
+    "static",
+    "cache",
+    "build-time",
+    "typescript"
+  ]
+}
