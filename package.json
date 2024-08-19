@@ -1,11 +1,13 @@
 {
   "name": "fetch-static",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A utility to fetch data at build-time and cache it for use in production.",
   "main": "dist/fetchStatic.js",
   "types": "dist/fetchStatic.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:mjs": "tsc -p tsconfig.mjs.json",
+    "build": "npm run build:cjs && npm run build:mjs"
   },
   "author": "Your Name",
   "license": "MIT",
@@ -27,6 +29,8 @@
   },
   "keywords": [
     "fetch",
+    "node-fetch",
+    "nextjs",
     "static",
     "cache",
     "build-time",
