@@ -19,3 +19,31 @@ Install via npm:
 
 ```bash
 npm install fetch-static
+```
+
+#### Usage
+##### Create a Configuration File
+
+1. In the root of your project, create a file named fetch-static.js with the following content(example):
+
+```
+module.exports = [
+  "https://jsonplaceholder.typicode.com/todos/1",
+  "https://jsonplaceholder.typicode.com/todos/2"
+];
+```
+
+Replace the URLs in the array with the endpoints you want to prefetch during the build.
+
+Add Prebuild Script
+
+2. In your project's package.json, add a script to run the prebuild process:
+
+```
+"scripts": {
+  "prebuild": "fetch-static",
+  "build": "npm run prebuild && next build"
+}
+```
+
+This script will run the prebuild process before building your Next.js application.

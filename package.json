@@ -1,16 +1,19 @@
 {
   "name": "fetch-static",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A utility to fetch data at build-time and cache it for use in production.",
-  "main": "dist/cjs/index.js",
-  "module": "dist/mjs/index.js",
-  "types": "dist/cjs/index.d.ts",
-  "scripts": {
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:mjs": "tsc -p tsconfig.mjs.json",
-    "build": "npm run build:cjs && npm run build:mjs"
+  "main": "./dist/fetchStatic.js",
+  "module": "./dist/fetchStatic.js",
+  "types": "./dist/fetchStatic.d.ts",
+  "type": "module",
+  "bin": {
+    "fetch-static": "./dist/fetchStaticPrebuild.js"
   },
-  "author": "Your Name",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node ./test.js"
+  },
+  "author": "theBadKing",
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^11.1.1",

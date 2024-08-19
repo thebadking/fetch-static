@@ -3,6 +3,7 @@ import path from "path";
 import fetch, { RequestInit } from "node-fetch";
 
 const CACHE_DIR = path.join(process.cwd(), "fetch-static");
+const ROUTES_FILE = path.join(process.cwd(), "fetch-static.js");
 
 interface FetchStaticOptions extends RequestInit {
   forceRefresh?: boolean;
@@ -50,4 +51,34 @@ export async function fetchStatic(
   return data;
 }
 
-export default fetchStatic;
+async function loadRoutesFromFile(filePath: string): Promise<string[]> {
+  try {
+    const configModule = await import(filePath);
+    if (configModule) {
+      return configModule.default;
+    }
+    console.error(`No staticPaths found in ${filePath}`);
+    return [];
+  } catch (error) {
+    console.error(`Error loading routes from file:`, error);
+    return [];
+  }
+}
+export async function prebuildRoutes() {
+  const routes = await loadRoutesFromFile(ROUTES_FILE);
+
+  for (const route of routes) {
+    await fetchStatic(route, { forceRefresh: true });
+  }
+  console.log("Pre-build routes fetching completed.");
+}
+
+async function runPrebuild() {
+  try {
+    await prebuildRoutes();
+  } catch (error) {
+    console.error("Error during prebuild:", error);
+  }
+}
+
+runPrebuild();
